@@ -179,5 +179,3 @@ Cada situação é única, mas é importante levar em consideração os seguinte
 >***Warning*** Lembre-se de que o DDD não é apenas separar a arquitetura da sua aplicação em camadas, ele envolve todo o processo de desenvolvimento, incluindo entender o domínio do seu problema em questão, elaborar a linguagem ubíqua, definir os contextos, criar um mapa de contexto e então começar a trabalhar na modelagem dos conceitos.
 
 [:arrow_up: Voltar para o início](#Domain-Driven-Design)
-
-> Deixem comentários e sugestões! :rocket: [color=#3b75c6]
