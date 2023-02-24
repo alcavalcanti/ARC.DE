@@ -4,10 +4,16 @@
 
 > ###### Esse conteúdo é amplamente baseado nos conceitos de microsserviços apresentados no livro [Criando Microsserviços de Sam Newman](https://www.amazon.com.br/Criando-Microsservi%C3%A7os-Projetando-Componentes-Especializados/dp/6586057884/ref=asc_df_6586057884/?tag=googleshopp00-20&linkCode=df0&hvadid=379748659420&hvpos=&hvnetw=g&hvrand=8981600790354988445&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1001773&hvtargid=pla-1646134392410&psc=1).
 
----
-#### Índice
 
-[ToC]
+**Sumário**
+- [A arquitetura de microsserviços](#a-arquitetura-de-microsserviços)
+    - [O que são os microsserviços?](#o-que-são-os-microsserviços)
+    - [Gerenciamento ou orquestração](#gerenciamento-ou-orquestração)
+    - [Gateway de API ](#gateway-de-api)
+- [Porque e quando utilizar a arquitetura de microsserviços](#porque-e-quando-utilizar-a-arquitetura-de-microsserviços)
+- [Downsides e considerações](#downsides-e-considerações)
+- [O caminho a ser seguido](#o-caminho-a-ser-seguido)
+
 ## A arquitetura de microsserviços
 
 Uma arquitetura de microsserviços consiste em uma coleção de pequenos serviços autônomos. Cada serviço é independente e deve implementar uma única funcionalidade em um contexto limitado. Um contexto limitado é uma divisão natural em uma organização e possui uma fronteira bem definida onde um modelo de domínio existe.
@@ -24,15 +30,12 @@ Dito isso, podemos entrar em mais detalhes e listar características importantes
 
 Os microsserviços são *pequenos*, altamente especializados, independentes e com baixo acoplamento. Em um modelo de trabalho ideal, uma única equipe pequena de desenvolvedores deve ser capaz de escrever e manter um microsserviço. Isso também significa que as equipes podem atualizar um serviço existente sem recompilar e reimplantar todo um ecossistema por inteiro.
 
-::: warning
-:warning: É extremamente importante ressaltar que **pequeno não significa nano**, um microsserviço deve ser independente e executar muito bem a função para qual foi escrito e é responsável. Nano serviços só devem ser usados em cenários muito específicos, pois adicionam muita complexidade ao ecossistema, entre elas complexidade de troubleshooting, entendimento e leitura e de sustentação e manutenção da aplicação.
-:::
+
+> **Warning**: É extremamente importante ressaltar que **pequeno não significa nano**, um microsserviço deve ser independente e executar muito bem a função para qual foi escrito e é responsável. Nano serviços só devem ser usados em cenários muito específicos, pois adicionam muita complexidade ao ecossistema, entre elas complexidade de troubleshooting, entendimento e leitura e de sustentação e manutenção da aplicação.
 
 Os serviços são responsáveis por manter seus próprios *dados** ou estado,  . Diferente do modelo tradicional, em que uma camada de dados separada lida com toda a persistência de dados. 
 
-:::info
-:bulb: Em dados devemos entender como um contexto de dados relevantes para aquele microsserviço específico, um contexto de dados pode ser uma base, uma tabela ou até mesmo uma coluna, o que é importante termos conciência é que entrelaçamento ou overlap de contexto dedados não deve ocorrer.
-:::
+> **Note**: Em dados devemos entender como um contexto de dados relevantes para aquele microsserviço específico, um contexto de dados pode ser uma base, uma tabela ou até mesmo uma coluna, o que é importante termos conciência é que entrelaçamento ou overlap de contexto dedados não deve ocorrer.
 
 A comunicação entre os serviços acontece por meio de contratos bem definidos e de forma padronizada (OAS3 e Avro). Detalhes da implementação interna de cada serviço ficam isolados dos demais.
 
@@ -41,7 +44,7 @@ Vale a pena explicitar também que essa independência se expande até o ponto d
 Como sabemos, o tema de microsserviços é bastante amplo e flexível, dessa maneira podemos encontrar um universo de aplicabilidades, para manter a documentação mais eficiente e objetiva vamos nos ater a detalhar adiante alguns dos componentes mais importantes encontrados em uma implementação típica de microsserviços.
 
 ### Gerenciamento ou orquestração
-Esse componente é responsável por colocar serviços em nós, identificar falhas, rebalancear esses nós quando necessário. Atualmente, encontramos diversas tecnologias amplamente utilizadas e muito eficientes no mercado prontas para uso. Dentro do contexto da Neon é altamente recomendado o uso de orquestradores de containers e de k8s ==como no documento xxxx (indicar algum documento de pipelinde de deploy de engenharia).==
+Esse componente é responsável por colocar serviços em nós, identificar falhas, rebalancear esses nós quando necessário. Atualmente, encontramos diversas tecnologias amplamente utilizadas e muito eficientes no mercado prontas para uso.
 
 ### Gateway de API 
 O gateway de API é o ponto de entrada para os clientes. Em vez de chamar serviços diretamente, os clientes chamam o gateway de API, que encaminha a chamada para os serviços adequados no back-end.
@@ -82,10 +85,6 @@ Os benefícios de microsserviços têm um ônus. Veja alguns dos desafios a sere
 
 * **Latência:** O uso de muitos serviços granulares pequenos muito provavelmente resultará em mais comunicação entre serviços. Quando essa comunicação não for bem dimensionada e gerenciada a latência poderá se tornar um problema. Você precisará projetar os recursos com cuidado. Evite por exemplo, *APIs* excessivamente prolixas e preferêncialmente use padrões de comunicação assíncrona, como o nível de carregamento baseado em mensageria.
 
-:::info
-:bulb: Quer saber mais sobre APIs e o padrão REST que utilizamos? Disponibilizamos um treinamento muito rico e de altíssima qualidade que pode ser acessado aqui!
-:::
-
 * **Deployment:** O deployment também é um ponto sensível que precisa de atenção, existem diversas soluções maduras e difundidas no mercado para nos assistir nessa etapa do processo, recomendamos o uso do deployment canário.
 
 * **Controle de versão:** As atualizações de um serviço não devem interromper os serviços que dependerem delas. Vários serviços podem ser atualizados a qualquer momento, portanto, sem design cuidadoso, você pode ter problemas com compatibilidade com versões anteriores ou futuras.
@@ -115,12 +114,7 @@ Mantenha o conhecimento de domínio fora do gateway. O gateway deve tratar e rot
 
 **Isole as falhas**. Use abordagens de *resiliência* para impedir que falhas em um microsserviço se propaguem e saiam do controle.
 
-:::info
-:bulb: Quer saber mais sobre resiliência? Nos aprofundamos mais nesse assunto na documentação disponível aqui!
-:::
+> **Note**: Quer saber mais sobre resiliência? Nos aprofundamos mais nesse assunto na documentação disponível aqui!
 
 
-[:arrow_up: Voltar para o início](#Microsserviços)
-
-
-> Deixem comentários e sugestões! :rocket: [color=#3b75c6]
+[:arrow_up: Voltar para o início](#a-arquitetura-de-microsserviços)
