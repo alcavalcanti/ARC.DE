@@ -6,21 +6,32 @@
 > ##### E também no livro [Domain Driven Design: Tackling Complexity in the Heart of Software]() do Eric Evans, o pai do DDD.
 
 ---
-#### Índice
 
-[ToC]
+**Sumário**
+- [O que é o Domain Driven Design (DDD)](#o-que-é-o-domain-driven-design-ddd)
+    - [O que é um domínio?](#o-que-é-um-domínio)
+- [Os três pilares do DDD](#os-três-pilares-do-ddd)
+    - [Linguagem ubíqua ](#linguagem-ubíqua)
+    - [Contextos delimitados](#contextos-delimitados)
+    - [Mapa de contexto](#mapa-de-contexto)
+- [O que é o Modelo e qual sua utilidade?](#o-que-é-o-modelo-e-qual-sua-utilidade)
+- [O conceito e a aplicação da modelagem evolutiva e mutável](#o-conceito-e-a-aplicação-da-modelagem-evolutiva-e-mutável)
+- [Como modelar de maneira efetiva](#como-modelar-de-maneira-efetiva)
+- [A arquitetura em camadas do Domain Driven Design](#a-arquitetura-em-camadas-do-domain-driven-design)
+- [Vantagens da utilização do DDD](#vantagens-da-utilização-do-ddd)
+- [Downsides](#downsides)
+
+
 ## O que é o Domain Driven Design (DDD)
 O DDD - Domain Driven Design - é um conceito que foi introduzido à literatura por Eric Evans, em 2004, no seu livro Domain Driven Design: Tackling Complexity in the Heart of Software. Em tradução literal, Domain Driven Design: Atacando as complexidades no coração do software.
 
 Uma das características do DDD, é a sua mutabilidade que pode ser desenvolvida ao longo do tempo. Essa característica fica evidente num contexto de microsserviços por exemplo, em que cada um tem uma responsabilidade definida e que pode ser desenvolvida de forma independente. Um microsserviço pode alterar uma parte do seu contexto sem ser necessária a alteração de todas as aplicações que o utilizam.
 
-:::info
-:bulb: Se você ainda não está familiarizado com o padrão de microsserviços na Neon ou gostaria de saber mais sobre como abordamos esse tema por aqui, recomendamos uma visita ao nosso **documento de arquitetura de referência de Microsserviços!**
-:::
+>**Note** Se você ainda não está familiarizado com o padrão de microsserviços na Neon ou gostaria de saber mais sobre como abordamos esse tema por aqui, recomendamos uma visita ao nosso **[documento de arquitetura de referência de Microsserviços!](https://github.com/alcavalcanti/arch-ref/blob/main/Microsservi%C3%A7os.md)**
 
 Como DDD se trata de um conceito, ele pode estar presente em arquiteturas de projeto distintas. No entanto, o fato de seguir o DDD em algumas implementações não significa que se utiliza DDD para toda aplicação. Para isso, é importante entender os seus conceitos e abstraí-los para que seja possível a aplicação na rotina do processo de desenvolvimento da organização.
 
-## O que é um domínio?
+### O que é um domínio?
 O domínio de um software é composto pelo fluxo de atividades realizadas pela pessoa usuária e todas as regras de negócio relacionadas a esse fluxo. 
 
 Assim como sua definição é ampla, um domínio pode ser complexo e possuir subdivisões dentro dele igualmente complexas. 
@@ -86,9 +97,7 @@ Já na relação entre domínios genéricos, a regra é ditada pelo que não tem
 
 Caso haja alguma alteração na API de localização, o que podemos fazer para contornar essa alteração é uma camada de anticorrupção (Anticorruption Layer - ACL), cujo nome é auto explicativo: ela garante que o domínio que utiliza dos serviços de outro (no nosso caso Estação) não seja corrompido pelas alterações desse (a API de Localização). Outra situação que podemos empregar a camada de anticorrupção seria na autenticação, caso ela seja via API. 
 
-:::info
-:bulb: Não conhece ou quer saber mais sobre o conceito de ACL? Basta acessar nosso documento de arquitetura de referência sobre o tema de Anticorruption Layer aqui!
-:::
+>**Note** Não conhece ou quer saber mais sobre o conceito de ACL? Basta acessar nosso documento de arquitetura de referência sobre o tema de Anticorruption Layer aqui!
 
 Agora, com os três conceitos DDD bem definidos, fica evidente que DDD se baseia no entendimento dos contextos e seus relacionamentos, fortalecidos da linguagem ubíqua estabelecida. Com isso entendido, podemos partir para entender como modelar nossa aplicação. 
 
@@ -123,9 +132,7 @@ Para manter toda essa dinâmica de construção é necessário não só uma boa 
 **Services:** São objetos sem estado que executam operações específicas de domínio que podem envolver outros objetos de domínio. 
 **Domain Event:** Eventos disparados quando acontece alguma alteração do domínio. Isso ocorre para que outras partes tenham conhecimento da alteração que aconteceu.
 
-::: warning
-:warning: Todos esses conceitos são essenciais para definição do DDD mas existem princípios relacionados a eles que, quando presentes, não necessariamente significam que sua aplicação utiliza DDD. 
-:::
+>**Warning** Todos esses conceitos são essenciais para definição do DDD mas existem princípios relacionados a eles que, quando presentes, não necessariamente significam que sua aplicação utiliza DDD. 
 
 
 São princípios de arquiteturas e Design Patterns **independentes do DDD** mas que podem auxiliar o desenvolvimento com DDD: 
@@ -169,14 +176,7 @@ Cada situação é única, mas é importante levar em consideração os seguinte
 * **Complexidade técnica** quando as tecnologias envolvidas já são muito complexas e envolve um esforço grande do time para refatorar o que existe com DDD. Ou mesmo quando dividir um domínio exige divisões em serviços que exigem habilidades técnicas distintas, o DDD pode não ser a melhor opção. 
 * **Complexidade de domínio** quando existem muitos subdomínios dentro de um outro, e a manutenção de uma funcionalidade simples exige mexer em muitos subdomínios. 
 
-:::warning
-:warning: Lembre-se de que o DDD não é apenas separar a arquitetura da sua aplicação em camadas, ele envolve todo o processo de desenvolvimento, incluindo entender o domínio do seu problema em questão, elaborar a linguagem ubíqua, definir os contextos, criar um mapa de contexto e então começar a trabalhar na modelagem dos conceitos. 
-:::
-
-## O DDD na Neon :rocket:
-Agora que já entendemos o conceito do que é efetivamente o DDD, podemos mencionar sua aplicabilidade na nossa organização. O DDD corre nas veias da Neon e atualmente temos um projeto incrível em construção e sendo fortemente divulgado e debatido internamente que é o nosso **DOMA**!
-O conteúdo disponível da arquitetura sobre o **DOMA** tem tudo que você precisa saber relacionado ao nosso modelo, os contextos, o mapa e mais informações importantes e extremamente úteis para o seu dia a dia na Neon.
-
+>***Warning*** Lembre-se de que o DDD não é apenas separar a arquitetura da sua aplicação em camadas, ele envolve todo o processo de desenvolvimento, incluindo entender o domínio do seu problema em questão, elaborar a linguagem ubíqua, definir os contextos, criar um mapa de contexto e então começar a trabalhar na modelagem dos conceitos.
 
 [:arrow_up: Voltar para o início](#Domain-Driven-Design)
 
