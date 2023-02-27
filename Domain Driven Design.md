@@ -132,7 +132,7 @@ Para manter toda essa dinâmica de construção é necessário não só uma boa 
 **Services:** São objetos sem estado que executam operações específicas de domínio que podem envolver outros objetos de domínio. 
 **Domain Event:** Eventos disparados quando acontece alguma alteração do domínio. Isso ocorre para que outras partes tenham conhecimento da alteração que aconteceu.
 
->**Warning** Todos esses conceitos são essenciais para definição do DDD mas existem princípios relacionados a eles que, quando presentes, não necessariamente significam que sua aplicação utiliza DDD. 
+>**Warning** Todos esses conceitos são essenciais para definição do DDD mas existem princípios relacionados a eles que, quando presentes, não necessariamente significam que sua organização utiliza o DDD. 
 
 
 São princípios de arquiteturas e Design Patterns **independentes do DDD** mas que podem auxiliar o desenvolvimento com DDD: 
