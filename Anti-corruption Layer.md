@@ -5,10 +5,20 @@
 > ###### Esse conteúdo é baseado na abordagem de ACL de [Vaughn Vernon do livro Domain-Driven Design Distilled](https://www.amazon.com.br/Domain-Driven-Design-Distilled-Vaughn-Vernon/dp/0134434420/ref=asc_df_0134434420/?tag=googleshopp00-20&linkCode=df0&hvadid=379735814613&hvpos=&hvnetw=g&hvrand=2005807085629592401&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1001773&hvtargid=pla-451410218303&psc=1) também conhecido como Green Book.
 > ###### Esse conteúdo também é baseado na abordagem de ACL de [Neal Ford do livro Building Evolutionary Architectures (cap. 6 e cap. 7).](https://www.amazon.com.br/Building-Evolutionary-Architectures-Neal-Ford/dp/1491986360/ref=asc_df_1491986360/?tag=googleshopp00-20&linkCode=df0&hvadid=379795170134&hvpos=&hvnetw=g&hvrand=5556893434825774845&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1001773&hvtargid=pla-380563455104&psc=1)
 > ###### Esse conteúdo também é baseado na [documentação oficial de arquiteturas da Microsoft sobre ACL e suas possíveis implementações.](https://docs.microsoft.com/pt-br/azure/architecture/patterns/anti-corruption-layer)
----
-#### Índice
 
-[ToC]
+
+**Sumário**
+- [O que é a Anti-corruption Layer (ACL)](#o-que-é-a-anti-corruption-layer-(ACL))
+    - [Contexto e possíveis problemas](#contexto-e-possíveis-problemas)
+    - [Entendendo a solução](#entendendo-a-solução)
+    - [Cuidados e considerações](#cuidados-e-considerações)
+    - [Quando utilizar esse padrão](#quando-utilizar-esse-padrão)
+- [EXTRA: Representações visuais](#extra-representações-visuais)
+    - [Cenário 1 - Atualização de API sem versionamento](#cenário-1---atualização-de-api-sem-versionamento)
+    - [Cenário 2 - Serviço de terceiros com indisponibilidade](#cenário-2---serviço-de-terceiros-com-indisponibilidade)
+- [Implementando uma ACL](#implementando-uma-acl)
+
+
 ## O que é a Anti-corruption Layer (ACL)
 
 Anti-corruption Layer (ACL) é um padrão de arquitetura de abordagem defensiva que tem como proposta isolar um modelo de domínio de todas as suas respectivas integrações (microsserviços de terceiros, monólitos, aplicações de semântica diferentes etc.) movendo todos os recursos destinados a essa integração para uma camada de responsabilidade única que agrupa e gerencia todas as requisições entre as partes, reduzindo ou eliminando o alto acoplamento e dependências desnecessárias existente. **É importante ressaltar que esse desacoplamento também deve ser interpretado a nível de negócio.** Na grande maioria das integrações intersistêmicas existentes atualmente, independente se são internas ou externas a organização não há a necessidade dos negócios estarem atrelados.
@@ -31,9 +41,7 @@ Para lidar com os problemas exemplificados anteriormente, posicionamos uma camad
 O desenho acima mostra uma representação simplificada da ACL em uma comunicação entre dois domínios, um deles (*Domínio B*) sendo de uma fonte terceira. 
 
 
-:::info
-:bulb: **Dica:** A proposta do pattern da ACL é agrupar toda a lógica de comunicação entre os domínios (Adapters, Façades, Translators etc.) e a camada pode ser implementada como um componente da aplicação ou como um serviço independente.
-:::
+>***Note*** A proposta do pattern da ACL é agrupar toda a lógica de comunicação entre os domínios (Adapters, Façades, Translators etc.) e a camada pode ser implementada como um componente da aplicação ou como um serviço independente.
 
 ### Cuidados e considerações
 Ao implementar uma camada anticorrupção é preciso estar ciente e tomar alguns cuidados, os mais relevantes estão listados a seguir:
@@ -138,7 +146,7 @@ public class AntiCorruptionLayer
 }
 ```
 4. Use a ACL em seu aplicativo principal. Sempre precisar interagir com o sistema externo, use a ACL para transformar os dados entre os dois sistemas.
-```scss
+```c#
 AntiCorruptionLayer acl = new AntiCorruptionLayer();
 
 // Faça um de para da informação do sistema externo para o principal
@@ -158,8 +166,4 @@ Esse é apenas um exemplo simples para demonstrar como você pode criar uma ACL 
 
 A ideia principal é usar a ACL para separar o restante do aplicativo das alterações no modelo de dados do sistema externo, facilitando a manutenção do aplicativo e a adaptação às alterações no sistema externo ao longo do tempo.
 
-[:arrow_left: Voltar para Contexto e possíveis problemas](#Contexto-e-possíveis-problemas)
-
 [:arrow_up: Voltar para o início](#Anti-corruption-Layer)
-
-> Deixem comentários e sugestões! :rocket: [color=#3b75c6]
