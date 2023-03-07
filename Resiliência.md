@@ -7,10 +7,31 @@
 > ##### Livro [Patterns for Fault Tolerant Software](https://www.amazon.com.br/Patterns-Fault-Tolerant-Software-English-ebook/dp/B00DXK33SK) de Robert S. Hanmer.
 > ##### Livro [Continuous Architecture in Practice: Software Architecture in the Age of Agility and Devops](https://www.amazon.com.br/Continuous-Architecture-Practice-Software-Agility/dp/0136523560/ref=asc_df_0136523560/?tag=googleshopp00-20&linkCode=df0&hvadid=379735814613&hvpos=&hvnetw=g&hvrand=13463599606167538282&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1001773&hvtargid=pla-1209039305209&psc=1) por  Murat Erder, Pierre Pureur, Eoin Woods e assinado por Vaughn Vernon
 
----
-#### Índice
 
-[ToC]
+
+**Sumário**
+- [As definições de disponibilidade e confiabilidade](#as-definições-de-disponibilidade-e-confiabilidade)
+    - [Disponibilidade](#disponibilidade)
+    - [Confiabilidade](#confiabilidade)
+    - [Como ser disponível](#como-ser-disponível)
+    - [Como ser confiável](#como-ser-confiável)
+- [Conhecendo mais sobre falhas, erros e defeitos](#conhecendo-mais-sobre-falhas-erros-e-defeitos)
+- [Reconhecendo que falhas são inevitáveis](#reconhecendo-que-falhas-são-inevitáveis)
+- [Resiliência depende de contenção de falhas](#resiliência-depende-de-contenção-de-falhas)
+- [Identificando a ocorrência de falhas](#identificando-a-ocorrência-de-falhas)
+    - [Health Checks](#health-checks)
+    - [Watchdogs](#watchdogs)
+- [Estratégias para contenção de falhas](#estratégias-para-contenção-de-falhas)
+    - [Comunicação assíncrona](#comunicação-assíncrona)
+    - [Bulkheads](#bulkheads)
+- [Estratégias para prevenção de falhas](#estratégias-para-prevenção-de-falhas)
+    - [Back pressure](#back-pressure)
+    - [Load shedding](#load-shedding)
+    - [Timeout](#timeout)
+    - [Proxy para componentes que apresentam riscos](#proxy-para-componentes-que-apresentam-riscos)
+    - [Circuit breaker](#circuit-breaker)
+
+
 ## As definições de disponibilidade e confiabilidade
 ### Disponibilidade 
 É um atributo de qualidade mensurável, que indica a relação entre o tempo em que um sistema ou componente está disponível e o tempo em que ele poderia (ou deveria) estar. Entendendo-se, nesse contexto, que um sistema está disponível quando funciona com a performance para qual foi projetada.
@@ -47,9 +68,7 @@ A estratégia mais efetiva para evitar defeitos é impedir que falhas acabem se 
 
 Em sistemas complexos, sem o devido cuidado, falhas em um componente se propagam rapidamente gerando erros em componentes que possuem acoplamento mais alto. Por isso, sob ponto de vista arquitetural é importante cuidar dos pontos de integração com atenção especial adotando estratégias que mitiguem impactos de falhas, erros ou defeitos.
 
-:::info
-:bulb: Uma abordagem interessante sobre contenções e mitigação de impactos de falhas em ponto de integração é a **Anti-corruption Layer (ACL)**, que é usada aqui na Neon e que possuímos uma documentação de arquitetura de referência muito boa detalhando o assunto:
-:::
+>***Note*** Uma abordagem interessante sobre contenções e mitigação de impactos de falhas em ponto de integração é a [**Anti-corruption Layer (ACL)**]()
 
 As falhas em componentes remotos podem assumir diversas formas, incluindo falhas de comunicação ou comportamento. Componentes remotos podem se tornar inesperadamente indisponíveis ou, o que é muito pior, incrivelmente lentos. Por isso, é essencial que práticas defensivas sejam adotadas.
 
@@ -86,24 +105,20 @@ A abordagem mais simples é utilizar filas point-to-point. Uma alternativa mais 
 
 A alternativa tradicional é utilizar estratégias de alta-disponibilidade com replicações e load balancers.
 
-:::warning
-:warning: É importante ter consciência e cuidado com o uso de filas e tópicos. Eles existem para auxiliar na construção de um ecossistema mais assíncrono mas ainda existem diversas situações onde o síncrono é necessário e não deve ser substituido, o uso de filas e tópicos também implica em maior complexidade, o que também significa que implementar mensageria desordenadamente é extremamente prejudicial, sem fundamento e não trás benefícios para aplicações. Vale ressaltar também que, a mensageria não tem como propósito ser um redirecionador de responsabilidades, a resiliência cabe à aplicação e não deve ser transferida para serviços de mensageria como uma maneira preguiçosa de falsas garantias.
-:::
+>***Warning*** É importante ter consciência e cuidado com o uso de filas e tópicos. Eles existem para auxiliar na construção de um ecossistema mais assíncrono mas ainda existem diversas situações onde o síncrono é necessário e não deve ser substituido, o uso de filas e tópicos também implica em maior complexidade, o que também significa que implementar mensageria desordenadamente é extremamente prejudicial, sem fundamento e não trás benefícios para aplicações. Vale ressaltar também que, a mensageria não tem como propósito ser um redirecionador de responsabilidades, a resiliência cabe à aplicação e não deve ser transferida para serviços de mensageria como uma maneira preguiçosa de falsas garantias.
 
 ### Bulkheads
 A ideia é basicamente criar instâncias dedicadas de determinados componentes para alguns cenários de uso. Dessa forma, impedindo que falhas ou eventos em um contexto de consumo se propaguem para os demais.
 
 ![img4_bulkhead](https://user-images.githubusercontent.com/107938412/205654685-e096b605-8482-4e43-95b1-dbadf229273f.png)
 
-## Estratégias para prevenção falhas
+## Estratégias para prevenção de falhas
 ### Back pressure
 Sempre que a intensidade de tráfego for desfavorável para um componente, o comportamento ideal é que ele passe a recusar novas demandas (usando load shedding ou rate limit), devolvendo a pressão para o cliente que deverá implementar e se munir de estratégias de retenção ou reduzindo o volume de demandas.
 
 Do ponto de vista do componente que está adotando back pressure, a implementação é restrita a alguma resposta de sinalização (talvez retornando 429 – Too many requests) para o cliente indicando a condição. Caberá ao cliente adotar a estratégia apropriada conforme a resposta obtida na requisição.
 
-:::info
-:bulb: Existem também estratégias para redução do volume de demandas citado anteriormente, são geralmente conhecidas como estratégias de degradação ou gracefully degradation.
-:::
+>***Note*** Existem também estratégias para redução do volume de demandas citado anteriormente, são geralmente conhecidas como estratégias de degradação ou gracefully degradation.
 
 ### Load shedding
 Assim como um rate limiter, um componente de load shedding opera como um middleware que monitora os recursos computacionais necessários da aplicação ou algum outro componente específico, bem como das dependências, e recusa ativamente novas requisições até que níveis saudáveis pré-determinados sejam restaurados.
