@@ -4,11 +4,14 @@
 
 > ###### Esse conteúdo é baseado nas seguintes fontes: 
 > ###### Livro de [Neal Ford, Building Evolutionary Architectures: Support Constant Change](https://www.amazon.com.br/Building-Evolutionary-Architectures-Neal-Ford/dp/1491986360).
----
-#### Índice
 
-[ToC]
 
+**Sumário**
+- [O que é arquitetura evolutiva](#o-que-é-a-arquitetura-evolutiva)
+    - [Os princípios chave da arquitetura evolutiva](#os-principios-chave-da-arquitetura-evolutiva)
+    - [Os benefícios da utilização](#os-beneficios-da-utilização)
+    - [Quando adotar a abordagem de arquitetura evolutiva](#quando-adotar-a-abordagem-da-arquitetura-evolutiva)
+- [Implementando a arquitetura evolutiva](#implementando-a-arquitetura-evolutiva)
 
 ## O que é arquitetura evolutiva
 
@@ -16,7 +19,7 @@ Arquitetura Evolutiva refere-se a uma abordagem de desenvolvimento de software e
 
 Em uma abordagem de arquitetura evolutiva, a arquitetura do sistema é vista como uma entidade viva que evolui em resposta a mudanças de requisitos e tecnologias. Essa abordagem é particularmente adequada para sistemas complexos e dinâmicos que estão sujeitos a requisitos e tecnologias que mudam rapidamente, pois permite que a arquitetura se adapte em resposta a essas mudanças.
 
-### Os princípios-chave da arquitetura evolutiva
+### Os princípios chave da arquitetura evolutiva
 
 * **Melhoria incremental:** A arquitetura é continuamente refinada ao longo do tempo, com base no feedback das partes interessadas, usuários e mercado. Isso permite que a arquitetura evolua em resposta a requisitos e tecnologias em constante mudança, em vez de ficar presa a um design fixo.
 
@@ -36,7 +39,7 @@ Em uma abordagem de arquitetura evolutiva, a arquitetura do sistema é vista com
 
 Além desses princípios, a arquitetura evolutiva também enfatiza a importância da comunicação, colaboração e aprendizado contínuo. A comunicação eficaz entre as partes interessadas, desenvolvedores e usuários é crucial para o sucesso de uma abordagem de arquitetura evolutiva, assim como uma cultura de aprendizado e melhoria contínua.
 
-### Os benefícios de utilização
+### Os benefícios da utilização
 
 Ao adotar a arquitetura evolutiva na organização em contrapartida ao esforço de mudanças de cultura e visão técnica existem pontos positivos, os principais podem ser observados a seguir:
 
