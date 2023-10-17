@@ -97,7 +97,9 @@ Watchdogs devem ser planejados na arquitetura, mas raramente são implementados 
 ### Comunicação assíncrona
 Substituir chamadas diretas por trocas de mensagens é, provavelmente, a medida mais eficiente para aumentar a resiliência de sistemas de software. A ideia é substituir chamadas a componentes potencialmente instáveis por mecanismos de mensageria comprovadamente sólidos e estáveis.
 
-![img3_async](https://user-images.githubusercontent.com/107938412/205654667-f442f707-8547-4280-a814-b6792b17c9fb.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/107938412/205654667-f442f707-8547-4280-a814-b6792b17c9fb.png">
+</p>
 
 
 A abordagem mais simples é utilizar filas point-to-point. Uma alternativa mais sofisticada e com menor acoplamento é a adoção do modelo de pub/sub.
@@ -112,7 +114,9 @@ A alternativa tradicional é utilizar estratégias de alta-disponibilidade com r
 ### Bulkheads
 A ideia é basicamente criar instâncias dedicadas de determinados componentes para alguns cenários de uso. Dessa forma, impedindo que falhas ou eventos em um contexto de consumo se propaguem para os demais.
 
-![img4_bulkhead](https://user-images.githubusercontent.com/107938412/205654685-e096b605-8482-4e43-95b1-dbadf229273f.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/107938412/205654685-e096b605-8482-4e43-95b1-dbadf229273f.png">
+</p>
 
 ## Estratégias para prevenção de falhas
 ### Back pressure
@@ -133,7 +137,9 @@ Embora não haja uma receita de bolo para escolher um timeout correto, eles deve
 ### Proxy para componentes que apresentam riscos
 Todo componente que não está sob controle do time de desenvolvimento interno e que precisa estar em conformidade com as táticas de resiliência, deve estar envelopada por um proxy.
 
-![img5_proxy](https://user-images.githubusercontent.com/107938412/205654702-5e5a5ca2-5d88-4c67-841e-004440124973.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/107938412/205654702-5e5a5ca2-5d88-4c67-841e-004440124973.png">
+</p>
 
 O proxy (Envoy, PgBound, HAProxy, etc) consegue resolver regras como load shedding, time outs, entre outros.
 
