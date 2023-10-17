@@ -68,7 +68,8 @@ A estratégia mais efetiva para evitar defeitos é impedir que falhas acabem se 
 
 Em sistemas complexos, sem o devido cuidado, falhas em um componente se propagam rapidamente gerando erros em componentes que possuem acoplamento mais alto. Por isso, sob ponto de vista arquitetural é importante cuidar dos pontos de integração com atenção especial adotando estratégias que mitiguem impactos de falhas, erros ou defeitos.
 
->***Note*** Uma abordagem interessante sobre contenções e mitigação de impactos de falhas em ponto de integração é a [**Anti-corruption Layer (ACL)**]()
+> [!NOTE]
+> Uma abordagem interessante sobre contenções e mitigação de impactos de falhas em ponto de integração é a [**Anti-corruption Layer (ACL)**]()
 
 As falhas em componentes remotos podem assumir diversas formas, incluindo falhas de comunicação ou comportamento. Componentes remotos podem se tornar inesperadamente indisponíveis ou, o que é muito pior, incrivelmente lentos. Por isso, é essencial que práticas defensivas sejam adotadas.
 
@@ -105,7 +106,8 @@ A abordagem mais simples é utilizar filas point-to-point. Uma alternativa mais 
 
 A alternativa tradicional é utilizar estratégias de alta-disponibilidade com replicações e load balancers.
 
->***Warning*** É importante ter consciência e cuidado com o uso de filas e tópicos. Eles existem para auxiliar na construção de um ecossistema mais assíncrono mas ainda existem diversas situações onde o síncrono é necessário e não deve ser substituido, o uso de filas e tópicos também implica em maior complexidade, o que também significa que implementar mensageria desordenadamente é extremamente prejudicial, sem fundamento e não trás benefícios para aplicações. Vale ressaltar também que, a mensageria não tem como propósito ser um redirecionador de responsabilidades, a resiliência cabe à aplicação e não deve ser transferida para serviços de mensageria como uma maneira preguiçosa de falsas garantias.
+> [!IMPORTANT]
+> É importante ter consciência e cuidado com o uso de filas e tópicos. Eles existem para auxiliar na construção de um ecossistema mais assíncrono mas ainda existem diversas situações onde o síncrono é necessário e não deve ser substituido, o uso de filas e tópicos também implica em maior complexidade, o que também significa que implementar mensageria desordenadamente é extremamente prejudicial, sem fundamento e não trás benefícios para aplicações. Vale ressaltar também que, a mensageria não tem como propósito ser um redirecionador de responsabilidades, a resiliência cabe à aplicação e não deve ser transferida para serviços de mensageria como uma maneira preguiçosa de falsas garantias.
 
 ### Bulkheads
 A ideia é basicamente criar instâncias dedicadas de determinados componentes para alguns cenários de uso. Dessa forma, impedindo que falhas ou eventos em um contexto de consumo se propaguem para os demais.
@@ -118,7 +120,8 @@ Sempre que a intensidade de tráfego for desfavorável para um componente, o com
 
 Do ponto de vista do componente que está adotando back pressure, a implementação é restrita a alguma resposta de sinalização (talvez retornando 429 – Too many requests) para o cliente indicando a condição. Caberá ao cliente adotar a estratégia apropriada conforme a resposta obtida na requisição.
 
->***Note*** Existem também estratégias para redução do volume de demandas citado anteriormente, são geralmente conhecidas como estratégias de degradação ou gracefully degradation.
+> [!NOTE]
+> Existem também estratégias para redução do volume de demandas citado anteriormente, são geralmente conhecidas como estratégias de degradação ou gracefully degradation.
 
 ### Load shedding
 Assim como um rate limiter, um componente de load shedding opera como um middleware que monitora os recursos computacionais necessários da aplicação ou algum outro componente específico, bem como das dependências, e recusa ativamente novas requisições até que níveis saudáveis pré-determinados sejam restaurados.
@@ -152,3 +155,5 @@ O funcionamento da máquina de estados é o seguinte:
     3.4. Se as falhas não ocorrerem mais, o circuito deverá fechar.
 
 ![img5_circuitbreaker](https://user-images.githubusercontent.com/107938412/205654693-975bad3f-2a1b-49a4-a688-a1915e53b564.png)
+
+[:arrow_up: Voltar para o início](#as-definições-de-disponibilidade-e-confiabilidade)
