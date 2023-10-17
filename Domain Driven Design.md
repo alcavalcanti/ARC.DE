@@ -184,6 +184,7 @@ Cada situação é única, mas é importante levar em consideração os seguinte
 * **Complexidade técnica** quando as tecnologias envolvidas já são muito complexas e envolve um esforço grande do time para refatorar o que existe com DDD. Ou mesmo quando dividir um domínio exige divisões em serviços que exigem habilidades técnicas distintas, o DDD pode não ser a melhor opção. 
 * **Complexidade de domínio** quando existem muitos subdomínios dentro de um outro, e a manutenção de uma funcionalidade simples exige mexer em muitos subdomínios. 
 
->***Warning*** Lembre-se de que o DDD não é apenas separar a arquitetura da sua aplicação em camadas, ele envolve todo o processo de desenvolvimento, incluindo entender o domínio do seu problema em questão, elaborar a linguagem ubíqua, definir os contextos, criar um mapa de contexto e então começar a trabalhar na modelagem dos conceitos.
+>[!IMPORTANT]
+> Lembre-se de que aplicar o DDD não é apenas separar a arquitetura da sua aplicação em camadas, ele envolve todo o processo de desenvolvimento na organização, incluindo entender o domínio do seu problema em questão, elaborar a linguagem ubíqua, definir os contextos, criar um mapa de contexto correto e então começar a trabalhar na modelagem desses conceitos.
 
 [:arrow_up: Voltar para o início](#Domain-Driven-Design)
