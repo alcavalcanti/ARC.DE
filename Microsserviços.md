@@ -31,11 +31,14 @@ Dito isso, podemos entrar em mais detalhes e listar características importantes
 Os microsserviços são *pequenos*, altamente especializados, independentes e com baixo acoplamento. Em um modelo de trabalho ideal, uma única equipe pequena de desenvolvedores deve ser capaz de escrever e manter um microsserviço. Isso também significa que as equipes podem atualizar um serviço existente sem recompilar e reimplantar todo um ecossistema por inteiro.
 
 
-> **Warning**: É extremamente importante ressaltar que **pequeno não significa nano**, um microsserviço deve ser independente e executar muito bem a função para qual foi escrito e é responsável. Nano serviços só devem ser usados em cenários muito específicos, pois adicionam muita complexidade ao ecossistema, entre elas complexidade de troubleshooting, entendimento e leitura e de sustentação e manutenção da aplicação.
+> [!WARNING]
+> É extremamente importante ressaltar que **pequeno não significa nano**, um microsserviço deve ser independente e executar muito bem a função para qual foi escrito e é responsável. Nano serviços só devem ser usados
+> em cenários muito específicos, pois adicionam muita complexidade ao ecossistema, entre elas complexidade de troubleshooting, entendimento e leitura e de sustentação e manutenção da aplicação.
 
 Os serviços são responsáveis por manter seus próprios *dados** ou estado,  . Diferente do modelo tradicional, em que uma camada de dados separada lida com toda a persistência de dados. 
 
-> **Note**: Em dados devemos entender como um contexto de dados relevantes para aquele microsserviço específico, um contexto de dados pode ser uma base, uma tabela ou até mesmo uma coluna, o que é importante termos conciência é que entrelaçamento ou overlap de contexto dedados não deve ocorrer.
+> [!IMPORTANT] 
+> Em dados devemos entender como um contexto de dados relevantes para aquele microsserviço específico, um contexto de dados pode ser uma base, uma tabela ou até mesmo uma coluna, o que é importante termos conciência é que entrelaçamento ou overlap de contexto de dados não deve ocorrer.
 
 A comunicação entre os serviços acontece por meio de contratos bem definidos e de forma padronizada (OAS3 e Avro). Detalhes da implementação interna de cada serviço ficam isolados dos demais.
 
@@ -114,7 +117,8 @@ Mantenha o conhecimento de domínio fora do gateway. O gateway deve tratar e rot
 
 **Isole as falhas**. Use abordagens de *resiliência* para impedir que falhas em um microsserviço se propaguem e saiam do controle.
 
-> **Note**: Quer saber mais sobre resiliência? Nos aprofundamos mais nesse assunto na documentação disponível aqui!
+> [!NOTE]
+> Quer saber mais sobre resiliência? Nos aprofundamos mais nesse assunto na documentação disponível [aqui!](https://github.com/alcavalcanti/arch-ref/blob/main/Resili%C3%AAncia.md)
 
 
 [:arrow_up: Voltar para o início](#a-arquitetura-de-microsserviços)
