@@ -161,10 +161,12 @@ SaveDataToExternalSystem(updatedExternalSystemData); }
 }
 ```
 
-E lembre-se:
-
-Esse é apenas um exemplo simples para demonstrar como você pode criar uma ACL em C#. Em um aplicativo do mundo real, você provavelmente teria modelos de dados e transformações mais complexos. 
-
-A ideia principal é usar a ACL para separar o restante do aplicativo das alterações no modelo de dados do sistema externo, facilitando a manutenção do aplicativo e a adaptação às alterações no sistema externo ao longo do tempo.
+> [!IMPORTANT]
+> *E lembre-se:*
+> Esse é apenas um exemplo simples para demonstrar como você pode criar uma ACL em C#.
+>
+> Em uma aplicação real, você provavelmente teria modelos de dados e transformações mais complexos.
+> 
+> A ideia principal é usar a ACL para separar o restante do aplicativo das alterações no modelo de dados do sistema externo, facilitando a manutenção do aplicativo e a adaptação às alterações no sistema externo ao longo do tempo.
 
 [:arrow_up: Voltar para o início](#Anti-corruption-Layer)
