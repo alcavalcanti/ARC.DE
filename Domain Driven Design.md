@@ -27,7 +27,8 @@ O DDD - Domain Driven Design - é um conceito que foi introduzido à literatura 
 
 Uma das características do DDD, é a sua mutabilidade que pode ser desenvolvida ao longo do tempo. Essa característica fica evidente num contexto de microsserviços por exemplo, em que cada um tem uma responsabilidade definida e que pode ser desenvolvida de forma independente. Um microsserviço pode alterar uma parte do seu contexto sem ser necessária a alteração de todas as aplicações que o utilizam.
 
->**Note** Se você ainda não está familiarizado com o padrão de microsserviços na Neon ou gostaria de saber mais sobre como abordamos esse tema por aqui, recomendamos uma visita ao nosso **[documento de arquitetura de referência de Microsserviços!](https://github.com/alcavalcanti/arch-ref/blob/main/Microsservi%C3%A7os.md)**
+> [!NOTE]  
+> Se você ainda não está familiarizado com o padrão de microsserviços ou gostaria de saber mais sobre como abordamos esse tema por aqui, recomendamos uma visita a nossa **[arquitetura de referência de Microsserviços!](https://github.com/alcavalcanti/arch-ref/blob/main/Microsservi%C3%A7os.md)**
 
 Como DDD se trata de um conceito, ele pode estar presente em arquiteturas de projeto distintas. No entanto, o fato de seguir o DDD em algumas implementações não significa que se utiliza DDD para toda aplicação. Para isso, é importante entender os seus conceitos e abstraí-los para que seja possível a aplicação na rotina do processo de desenvolvimento da organização.
 
@@ -86,10 +87,11 @@ Um exemplo para nossa aplicação de aluguel de bicicletas, considerando o camin
 Uma vez que definimos as informações acima é muito mais fácil delimitar os contextos, definir as entidades da aplicação e as ações particulares de cada uma. Isso permite que os envolvidos tenham uma visão geral do produto e assim direcionar o desenvolvimento pelo domínio, ou seja, utilizando o conceito do DDD. 
 
 ### Mapa de contexto
-Os mapas de contexto (Context Maps), é o mapeamento dos Bounded Contexts. 
+Os mapas de contexto (Context Maps), é o mapeamento dos Bounded Contexts.
 
-
-![ddd_mapadecontexto](https://user-images.githubusercontent.com/40603968/193652102-153e6318-242e-4782-a418-36e0284d4452.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/40603968/193652102-153e6318-242e-4782-a418-36e0284d4452.png">
+</p>
 
 Observe que nesse mapa de contexto existe a relação entre domínios principais e domínios genéricos. Os domínios principais são upstream, ou seja, têm prioridade em relação aos genéricos, que são downstream. Isso significa que na ordem de prioridade, quando alguma coisa mudar, prioritariamente deve partir do lado dos domínios genéricos.
 
@@ -97,7 +99,8 @@ Já na relação entre domínios genéricos, a regra é ditada pelo que não tem
 
 Caso haja alguma alteração na API de localização, o que podemos fazer para contornar essa alteração é uma camada de anticorrupção (Anticorruption Layer - ACL), cujo nome é auto explicativo: ela garante que o domínio que utiliza dos serviços de outro (no nosso caso Estação) não seja corrompido pelas alterações desse (a API de Localização). Outra situação que podemos empregar a camada de anticorrupção seria na autenticação, caso ela seja via API. 
 
->**Note** Não conhece ou quer saber mais sobre o conceito de ACL? Basta acessar nosso documento de arquitetura de referência sobre o tema de Anticorruption Layer aqui!
+> [!NOTE]  
+> Não conhece ou quer saber mais sobre o conceito de ACL? Basta acessar nosso documento de arquitetura de referência sobre o tema de [Anticorruption Layer](https://github.com/alcavalcanti/arch-ref/blob/main/Anti-corruption%20Layer.md)
 
 Agora, com os três conceitos DDD bem definidos, fica evidente que DDD se baseia no entendimento dos contextos e seus relacionamentos, fortalecidos da linguagem ubíqua estabelecida. Com isso entendido, podemos partir para entender como modelar nossa aplicação. 
 
@@ -106,7 +109,9 @@ Segundo Evans, o modelo é uma abstração de um conceito que define o domínio.
 
 Vamos imaginar a partir do nosso exemplo de uma aplicação para aluguel de bicicletas: são coisas intuitivas que fazem parte do nosso domínio e que determinam o nosso modelo. Por exemplo, a pessoa usuária, o seu pagamento e a própria bicicleta, precisam de abstrações dentro do nosso código para refletir a situação real. 
 
-![ddd_dominio_modelo](https://user-images.githubusercontent.com/40603968/193652234-462e0b4a-557e-4037-b7bc-861331d24d7f.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/40603968/193652234-462e0b4a-557e-4037-b7bc-861331d24d7f.png">
+</p>
 
 São características de um modelo: 
 
@@ -132,7 +137,8 @@ Para manter toda essa dinâmica de construção é necessário não só uma boa 
 **Services:** São objetos sem estado que executam operações específicas de domínio que podem envolver outros objetos de domínio. 
 **Domain Event:** Eventos disparados quando acontece alguma alteração do domínio. Isso ocorre para que outras partes tenham conhecimento da alteração que aconteceu.
 
->**Warning** Todos esses conceitos são essenciais para definição do DDD mas existem princípios relacionados a eles que, quando presentes, não necessariamente significam que sua organização utiliza o DDD. 
+> [!WARNING]
+> Todos esses conceitos são essenciais para definição do DDD mas existem princípios relacionados a eles que, quando presentes, não necessariamente significam que sua organização utiliza o DDD. 
 
 
 São princípios de arquiteturas e Design Patterns **independentes do DDD** mas que podem auxiliar o desenvolvimento com DDD: 
@@ -153,7 +159,9 @@ Para construir um modelo efetivo, é importante considerar os seguintes fatores:
 ## A arquitetura em camadas do Domain Driven Design
 Apesar de não andarem sempre juntas, é interessante vermos como é uma arquitetura em camadas em DDD. Para isso, vamos considerar uma arquitetura de exemplo em que temos 5 camadas: 
 
-![ddd_camadas](https://user-images.githubusercontent.com/40603968/193652750-20896100-6894-488e-8595-e5ce8d10d71d.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/40603968/193652750-20896100-6894-488e-8595-e5ce8d10d71d.png">
+</p>
 
 **Apresentação ou User Interface** é a camada visual que representa a interface com a pessoa usuária (UI). Exemplos: Aplicação Desktop, Aplicação Web, Aplicação Mobile. Essa camada tem referência direta às camadas da Aplicação, Domínio e Infraestrutura. 
 **Serviços** é a camada que faz comunicação com outras aplicações e APIs. Exemplos: Web API, WebSockets. 
