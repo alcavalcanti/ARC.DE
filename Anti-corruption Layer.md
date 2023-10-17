@@ -41,7 +41,8 @@ Para lidar com os problemas exemplificados anteriormente, posicionamos uma camad
 O desenho acima mostra uma representação simplificada da ACL em uma comunicação entre dois domínios, um deles (*Domínio B*) sendo de uma fonte terceira. 
 
 
->***Note*** A proposta do pattern da ACL é agrupar toda a lógica de comunicação entre os domínios (Adapters, Façades, Translators etc.) e a camada pode ser implementada como um componente da aplicação ou como um serviço independente.
+> [!NOTE]
+>  A proposta do pattern da ACL é agrupar toda a lógica de comunicação entre os domínios (Adapters, Façades, Translators etc.) e a camada pode ser implementada como um componente da aplicação ou como um serviço independente.
 
 ### Cuidados e considerações
 Ao implementar uma camada anticorrupção é preciso estar ciente e tomar alguns cuidados, os mais relevantes estão listados a seguir:
