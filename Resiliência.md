@@ -69,7 +69,7 @@ A estratégia mais efetiva para evitar defeitos é impedir que falhas acabem se 
 Em sistemas complexos, sem o devido cuidado, falhas em um componente se propagam rapidamente gerando erros em componentes que possuem acoplamento mais alto. Por isso, sob ponto de vista arquitetural é importante cuidar dos pontos de integração com atenção especial adotando estratégias que mitiguem impactos de falhas, erros ou defeitos.
 
 > [!NOTE]
-> Uma abordagem interessante sobre contenções e mitigação de impactos de falhas em ponto de integração é a [**Anti-corruption Layer (ACL)**]()
+> Uma abordagem interessante sobre contenções e mitigação de impactos de falhas em ponto de integração é a [**Anti-corruption Layer (ACL)**](https://github.com/alcavalcanti/arch-ref/blob/main/Anti-corruption%20Layer.md)
 
 As falhas em componentes remotos podem assumir diversas formas, incluindo falhas de comunicação ou comportamento. Componentes remotos podem se tornar inesperadamente indisponíveis ou, o que é muito pior, incrivelmente lentos. Por isso, é essencial que práticas defensivas sejam adotadas.
 
