@@ -7,10 +7,10 @@
 
 
 **Sumário**
-- [O que é arquitetura evolutiva](#o-que-é-a-arquitetura-evolutiva)
-    - [Os princípios chave da arquitetura evolutiva](#os-principios-chave-da-arquitetura-evolutiva)
-    - [Os benefícios da utilização](#os-beneficios-da-utilização)
-    - [Quando adotar a abordagem de arquitetura evolutiva](#quando-adotar-a-abordagem-da-arquitetura-evolutiva)
+- [O que é arquitetura evolutiva](#o-que-é-arquitetura-evolutiva)
+    - [Os princípios chave da arquitetura evolutiva](#os-princípios-chave-da-arquitetura-evolutiva)
+    - [Os benefícios da utilização](#os-benefícios-da-utilização)
+    - [Quando adotar a abordagem da arquitetura evolutiva](#quando-adotar-a-abordagem-da-arquitetura-evolutiva)
 - [Implementando a arquitetura evolutiva](#implementando-a-arquitetura-evolutiva)
 
 ## O que é arquitetura evolutiva
@@ -51,7 +51,7 @@ Ao adotar a arquitetura evolutiva na organização em contrapartida ao esforço 
 
 * **Confiabilidade e disponibilidade aprimoradas:** O foco na resiliência e escalabilidade na Arquitetura Evolucionária garante que a arquitetura possa continuar a operar de forma eficaz, mesmo diante de falhas ou interrupções.
 
-### Quando adotar a abordagem de arquitetura evolutiva
+### Quando adotar a abordagem da arquitetura evolutiva
 
 A Arquitetura Evolutiva é uma abordagem adequada em situações onde as seguintes condições estão presentes:
 
